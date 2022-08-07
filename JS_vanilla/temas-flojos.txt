@@ -1,0 +1,7 @@
+ TEMAS FLOJOS
+
+ 1- Acceso a propiedades de objetos.
+ 2- Herencia prototípica.
+ 3- Recursividad, funciones recursivas.
+ 4- Expresiones regulares.
+ 5- 

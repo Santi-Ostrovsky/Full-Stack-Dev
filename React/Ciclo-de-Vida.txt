@@ -1,0 +1,15 @@
+CICLO DE VIDA DE LOS COMPONENTES (clase // funcion)
+
+1) CONSTRUCTOR // NULL
+
+2) RENDER // RETURN
+
+3) componentDidMount() // useEffect(()=>{},[])
+
+4) ETAPA UPDATE (cambio en una prop, cambio en un estado, forceUpdate())
+    - shouldComponentUpdate(true/false) // null
+    - RENDER // RETURN
+    - didComponentUpdate // useEffect(()=>{},[componente])
+
+5) ETAPA DISMOUNT (componentWillUnmount() // useEffect(()=>return[x],[]))
+

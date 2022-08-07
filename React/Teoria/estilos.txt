@@ -1,0 +1,131 @@
+FORMA GLOBAL, ya casi no se usa (legacy, obsoletos)
+
+import React from 'react';
+import './App.css'; // se puede importar un archivo de estilo en el JSX
+
+class App extends React.Component {
+    render() {
+        return (
+            <div className='App'>
+            <h1>Titulo</h1>
+            </div>
+        );
+    }
+}
+
+↓↓↓↓
+
+WEBPACK
+
+// $ npm install --save-dev css-loader style-loader
+
+module.exports = {
+    ...
+    ...
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    },
+    ...
+    ...
+}
+
+---------------------------------------------
+
+ESTILOS EN React
+
+pros:
+    - compatibilidad: se da estilos igual que antes, se pueden reusar los css que ya teníamos.
+    - no es necesario aprender nada nuevo.
+
+contras:
+    - los estilos son globales, en contra de la filosofía de los componentes.
+    - mismos problemas de organización que con CSS vanilla.
+
+---------------------------------------------
+
+Cuando se importan dos hojas de estilo para los mismos elementos en un mismo archivo JSX, se aplican los últimos estilos importados.
+
+---------------------------------------------
+
+IN-LINE STYLING (css en html)
+
+con el atributo style dentro de las etiquetas html.
+
+const divStyle = {
+    color: 'blue',
+    backgroundImage: 'url(' + imgUrl + ')',
+};
+
+function HelloWorldComponent() {
+    return <div style={divStyle}>Hello World!</div>;
+}
+
+pros:
+    - menos configuración.
+    estilos locales, no hay colisión.
+
+contras:
+    - se pierden los pseudo selectores (ej.hover).
+
+---------------------------------------------
+
+CSS MODULES
+
+import React
+import s from './Product.css';
+
+function Product (props) {
+    return (
+        <div className={`${s.producto} ${s.hola}`}>
+        <h3 className={s.hola}>{props.title}</h3>
+        <p>{props.price}</p>
+        </div>
+    );
+}
+
+export default Product;
+
+pros
+    - componentizado: los estilos son locales, no hay colisiones.
+    - estilos locales y particulares para cada componente.
+
+contras
+    - se pierden los estilos globales.
+    - se puede combinar con la primera forma.
+
+---------------------------------------------
+
+STYLED componentes
+
+import styled from 'styled-components';
+
+const DivWrapper = styled.div `
+    width: 50%;
+    border: 2px solid black;
+    $ {props => (props.color === 'blue') ? `background-color: blue`: null}
+    $ {props => (props.color === 'red') ? `background-color: red`: null}
+`;
+
+export default function Component () {
+    return (
+        <DivWrapper>
+        <p>Hello Styled component</p>
+        </DivWrapper>
+    )
+}
+
+
+pros:
+    - componentizado: archivos individuales para cada parte del documento.
+    - reutilización: idem.
+
+contras:
+    - sintaxis complicada
+
+---------------------------------------------
+
